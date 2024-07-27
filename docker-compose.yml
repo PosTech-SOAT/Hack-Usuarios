@@ -5,7 +5,7 @@ services:
     image: postgres
     container_name: postech_hackhaton
     ports:
-      - 5434:5432
+      - 5432:5432
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
@@ -19,8 +19,8 @@ services:
     build: .
     container_name: hackhaton
     ports:
-      - 3000:3000
-      - 9229:9229
+      - 3001:3001
+      - 9228:9228
     environment:
       - DB_HOST=postech_hackhaton
       - DB_PORT=5434
