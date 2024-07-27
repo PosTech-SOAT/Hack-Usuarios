@@ -23,6 +23,11 @@ export class PostgreSQLFactory {
 			migrationsTableName: 'Migrations',
 			synchronize: false,
 			logging: true,
+			extra: {
+				ssl: {
+					rejectUnauthorized: false,
+				},
+			},
 		});
 	}
 
