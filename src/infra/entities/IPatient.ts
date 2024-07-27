@@ -1,6 +1,7 @@
 import { IUser } from './IUserEntity';
 
 export interface IPatient {
+	id: string;
 	user: IUser;
 	cpf: string;
 	name: string;

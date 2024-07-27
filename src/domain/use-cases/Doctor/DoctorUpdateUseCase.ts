@@ -17,14 +17,16 @@ export default class DoctorUpdateUseCase
 {
 	constructor(
 		@inject('DoctorRepository')
-		private doctorRepository: IDoctorRepository,
+		private doctorRepository: IDoctorRepository
 	) {}
 
 	async execute({ id, params }: DoctorUpdateParams): Promise<IDoctor> {
-		const doctor = await this.doctorRepository.update(id, params);
-		if (!doctor) {
+		const doctorExists = await this.doctorRepository.findById(id);
+
+		if (!doctorExists) {
 			throw new Error('Doctor not found');
 		}
+		const doctor = await this.doctorRepository.update(id, params);
 		return doctor;
 	}
 }

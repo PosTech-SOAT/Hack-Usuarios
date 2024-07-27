@@ -9,13 +9,14 @@ export default class PatientListUseCase
 {
 	constructor(
 		@inject('PatientRepository')
-		private patientRepository: IPatientRepository,
+		private patientRepository: IPatientRepository
 	) {}
 
 	async execute(): Promise<IPatient[]> {
 		const patients = await this.patientRepository.list();
 
-		const patientsList: IPatient[] = patients.map((patient) => ({
+		const patientsList = patients.map((patient) => ({
+			id: patient.id,
 			user: patient.user,
 			cpf: patient.cpf,
 			name: patient.name,

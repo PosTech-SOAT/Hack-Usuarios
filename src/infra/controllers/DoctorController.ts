@@ -40,9 +40,9 @@ export default class DoctorController {
 	async findById(request: Request, response: Response) {
 		const findOneDoctorUseCase = container.resolve(DoctorFindOneUseCase);
 		try {
-			const category = await findOneDoctorUseCase.execute(request.params.id);
+			const doctor = await findOneDoctorUseCase.execute(request.params.id);
 
-			return response.status(200).json(category);
+			return response.status(200).json(doctor);
 		} catch (error: any) {
 			return response.status(400).json({ message: error.message });
 		}

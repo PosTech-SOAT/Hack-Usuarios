@@ -53,10 +53,10 @@ export default class PatientController {
 	}
 
 	async findById(request: Request, response: Response) {
-		const patientListUseCase = container.resolve(PatientFindOneUseCase);
+		const patientByIdUseCase = container.resolve(PatientFindOneUseCase);
 
 		try {
-			const patient = await patientListUseCase.execute(request.params.cpf);
+			const patient = await patientByIdUseCase.execute(request.params.id);
 
 			return response.status(200).json(patient);
 		} catch (error: any) {
