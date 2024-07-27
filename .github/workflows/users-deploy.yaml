@@ -59,4 +59,5 @@ jobs:
           sleep 10s
           kubectl apply -f k8s/users-hpa.yaml
           echo "http://$(kubectl get svc users-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):3000"
+
       
