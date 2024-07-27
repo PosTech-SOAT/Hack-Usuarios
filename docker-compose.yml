@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  database:
+    image: postgres
+    container_name: postech_hackhaton
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=db_postech_hackhaton
+    volumes:
+      - pgdata:/data/postgres
+    networks:
+      - fiap-network
+
+  app:
+    build: .
+    container_name: hackhaton
+    ports:
+      - 3000:3000
+      - 9229:9229
+    environment:
+      - DB_HOST=postech_hackhaton
+      - DB_PORT=5434
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_NAME=db_postech_hackhaton
+      - CLIENT_URL=http://postech_customer_container:3001
+      - PAYMENT_URL=http://postech_payment_container:3002
+    volumes:
+      - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
+    networks:
+      - fiap-network
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  fiap-network:
+    driver: bridge

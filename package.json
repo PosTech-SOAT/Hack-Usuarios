@@ -1,0 +1,48 @@
+{
+  "name": "users-microservice",
+  "description": "Users Microservice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "dev": "ts-node-dev --respawn --inspect --transpile-only --ignore-watch node_modules src/index.ts",
+    "lint:fix": "eslint --fix --ext .js,.mjs,.ts,.json .",
+    "migration:generate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -d ./src/data/data-sources/factories/PostgreSQLDataSource.ts ./src/data/typeorm/migrations/CreateUsersTable",
+    "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d ./src/data/data-sources/factories/PostgreSQLDataSource.ts",
+    "migration:revert": "typeorm-ts-node-commonjs -d ./src/data/data-sources/factories/PostgreSQLDataSource.ts migration:revert"
+  },
+  "repository": "git@github.com:VitorDiToro/PosTech-3SOAT.git",
+  "author": "Dedyanna Cacau <dedyannacacau@gmail.com>",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^15.8.0",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "reflect-metadata": "^0.2.2",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsyringe": "^4.8.0",
+    "typeorm": "^0.3.20",
+    "uuid": "^10.0.0"
+  },
+  "resolutions": {
+    "eslint-plugin-import/eslint": "^8.57.0"
+  }
+}
