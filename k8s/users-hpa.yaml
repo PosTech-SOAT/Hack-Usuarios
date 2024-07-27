@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: hpa-schedules
+  name: hpa-users
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
